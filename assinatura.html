@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assinatura TECD</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f8fafc;
+  padding:30px;
+}
+
+.container{
+  max-width:1400px;
+  margin:auto;
+  display:flex;
+  gap:24px;
+  align-items:flex-start;
+}
+
+.panel{
+  width:360px;
+  background:#fff;
+  border-radius:18px;
+  padding:24px;
+  box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.panel h2{
+  font-size:24px;
+  margin-bottom:18px;
+  color:#111827;
+}
+
+.panel p{
+  font-size:13px;
+  color:#6b7280;
+  margin-bottom:18px;
+}
+
+.panel input{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid #dbe3ee;
+  border-radius:10px;
+  margin-bottom:10px;
+  font-size:14px;
+  outline:none;
+}
+
+.panel input:focus{
+  border-color:#0b74d1;
+}
+
+.panel button{
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:8px;
+}
+
+.btn-primary{
+  background:#0b74d1;
+  color:#fff;
+}
+
+.btn-dark{
+  background:#111827;
+  color:#fff;
+}
+
+.preview{
+  flex:1;
+  background:#fff;
+  border-radius:18px;
+  padding:28px;
+  box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.line{
+  margin-bottom:8px;
+  font-size:14px;
+  color:#374151;
+  line-height:20px;
+}
+
+#cargoWrap{
+  margin-bottom:16px;
+}
+
+@media(max-width:980px){
+  .container{
+    flex-direction:column;
+  }
+
+  .panel{
+    width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="panel">
+
+<h2>Assinatura Corporativa</h2>
+<p>Preencha os campos para gerar sua assinatura profissional.</p>
+
+<input id="nome" placeholder="Nome completo">
+<input id="cargo" placeholder="Cargo (opcional)">
+<input id="celular" placeholder="Celular (opcional)">
+<input id="email" placeholder="E-mail">
+<input id="linkedin" placeholder="LinkedIn (opcional)">
+
+<button class="btn-primary" onclick="gerar()">Atualizar</button>
+<button class="btn-dark" onclick="copiar()">Copiar como texto</button>
+<button class="btn-dark" onclick="baixarImagem()">Baixar como imagem</button>
+
+
+</div>
+
+<div class="preview" id="preview">
+
+<div id="assinatura" style="background:#fff;padding:20px;">
+
+<table cellpadding="0" cellspacing="0" border="0"
+style="font-family:Arial,Helvetica,sans-serif;max-width:900px;width:100%;background:#ffffff;border-collapse:collapse;">
+
+<tr>
+
+<td width="290" valign="top" style="padding-right:22px;vertical-align:top;">
+<img src="logo.png" style="width:260px;display:block;">
+</td>
+
+<td valign="top"
+style="border-left:2px solid #0b74d1;padding-left:24px;vertical-align:top;">
+
+<div id="p_nome"
+style="font-size:16px;font-weight:bold;color:#111827;margin-bottom:4px;">
+Seu Nome
+</div>
+
+<div id="cargoWrap" style="margin-bottom:16px;">
+<div id="p_cargo"
+style="font-size:15px;color:#0b74d1;font-weight:bold;">
+Seu Cargo
+</div>
+</div>
+
+<!-- <div class="line" style="margin-bottom:8px;font-size:14px;color:#374151;line-height:20px;">
+<img src="phone.png" width="18" height="18"
+style="width:18px;height:18px;vertical-align:middle;margin-right:8px;">
+<span id="p_tel">(17) 3472-1267</span>
+</div> -->
+
+<div class="line" id="celularWrap"
+style="margin-bottom:8px;font-size:14px;color:#374151;line-height:20px;">
+<img src="phone.png" width="18" height="18"
+style="width:18px;height:18px;vertical-align:middle;margin-right:8px;">
+<span id="p_celular">(11) 99999-9999</span>
+</div>
+
+<div class="line" style="margin-bottom:8px;font-size:14px;color:#374151;line-height:20px;">
+<img src="mail.png" width="18" height="18"
+style="width:18px;height:18px;vertical-align:middle;margin-right:8px;">
+<span id="p_email">email@empresa.com.br</span>
+</div>
+
+<div class="line" style="margin-bottom:8px;font-size:14px;color:#374151;line-height:20px;">
+<img src="web.png" width="18" height="18"
+style="width:18px;height:18px;vertical-align:middle;margin-right:8px;">
+<span id="p_site">www.tecdsistemas.com.br</span>
+</div>
+
+<div class="line" id="linkedinWrap"
+style="margin-bottom:8px;font-size:14px;color:#374151;line-height:20px;">
+<img src="linkedin.png" width="18" height="18"
+style="width:18px;height:18px;vertical-align:middle;margin-right:8px;">
+<span id="p_linkedin">linkedin.com/in/seuperfil</span>
+</div>
+
+<div class="line" style="margin-bottom:8px;font-size:14px;color:#374151;line-height:20px;">
+<img src="location.png" width="18" height="18"
+style="width:18px;height:18px;vertical-align:middle;margin-right:8px;">
+<span id="p_endereco">Rua Dr.Octavio C.Filho, 637 Centro . Cep:15190-000 Nhandeara.sp</span>
+</div>
+
+<div style="margin-top:18px;font-size:13px;color:#6b7280;line-height:20px;">
+Soluções que
+<span style="color:#0b74d1;font-weight:bold;">conectam.</span>
+Tecnologia que
+<span style="color:#0b74d1;font-weight:bold;">transforma.</span>
+</div>
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+function gerar(){
+
+const nome = document.getElementById("nome").value;
+const cargo = document.getElementById("cargo").value;
+const celular = document.getElementById("celular").value;
+const email = document.getElementById("email").value;
+const linkedin = document.getElementById("linkedin").value;
+
+document.getElementById("p_nome").innerText = nome || "Seu Nome";
+document.getElementById("p_celular").innerText = celular || "(11) 99999-9999";
+document.getElementById("p_email").innerText = email || "email@empresa.com.br";
+
+if(cargo.trim()===""){
+  document.getElementById("cargoWrap").style.display="none";
+}else{
+  document.getElementById("cargoWrap").style.display="block";
+  document.getElementById("p_cargo").innerText = cargo;
+}
+
+if(linkedin.trim()===""){
+  document.getElementById("linkedinWrap").style.display="none";
+}else{
+  document.getElementById("linkedinWrap").style.display="block";
+  document.getElementById("p_linkedin").innerText = linkedin;
+}
+
+if(celular.trim()===""){
+  document.getElementById("celularWrap").style.display="none";
+}else{
+  document.getElementById("celularWrap").style.display="block";
+}
+
+}
+
+async function copiar(){
+
+const elemento = document.getElementById("assinatura").cloneNode(true);
+
+const html = `
+<html>
+<body style="margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;">
+${elemento.innerHTML}
+</body>
+</html>
+`;
+
+
+const item = new ClipboardItem({
+"text/html": new Blob([html], {type:"text/html"}),
+"text/plain": new Blob([elemento.innerText], {type:"text/plain"})
+});
+
+await navigator.clipboard.write([item]);
+
+alert("Assinatura copiada com formatação! Agora cole no e-mail. E formate a cor e o tamanho da imagem apenas.");
+}
+
+async function baixarImagem(){
+const elemento = document.getElementById("preview");
+
+const canvas = await html2canvas(elemento, {
+  scale: 2,
+  useCORS: true
+});
+
+const link = document.createElement("a");
+link.download = "assinatura.png";
+link.href = canvas.toDataURL("image/png");
+link.click();
+}
+</script>
+
+
+
+</body>
+</html>
